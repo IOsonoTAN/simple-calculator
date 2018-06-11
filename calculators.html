@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Financial calculator</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    #accordion {
+      margin: 20px 0;
+    }
+    #accordion .card-header {
+      padding: 0;
+    }
+    .buttons {
+      margin: 4px 0;
+    }
+    .buttons .btn {
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#interest-per-month" aria-expanded="true" aria-controls="interest-per-month">
+                  Interest per month
+                </button>
+              </h5>
+            </div>
+
+            <div id="interest-per-month" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <form>
+                  <div class="form-group row">
+                    <label for="inputAmount" class="col-sm-2 col-form-label">Amount</label>
+                    <div class="col-sm-5">
+                      <input type="number" min="0" class="form-control" id="inputAmount" placeholder="ex: 15900" onkeyup="javascript: calculateInterest()">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputMonth" class="col-sm-2 col-form-label">Month(s)</label>
+                    <div class="col-sm-5">
+                      <input type="number" class="form-control" id="inputMonth" placeholder="ex: 10 as months" value="3" onkeyup="javascript: calculateInterest()">
+                    </div>
+                    <div class="col-sm-5 buttons">
+                      <a href="#" class="btn btn-sm btn-outline-info" onclick="javascript: insertMonths(3)">3 months</a>
+                      <a href="#" class="btn btn-sm btn-outline-info" onclick="javascript: insertMonths(6)">6 months</a>
+                      <a href="#" class="btn btn-sm btn-outline-info" onclick="javascript: insertMonths(10)">10 months</a>
+                      <a href="#" class="btn btn-sm btn-outline-info" onclick="javascript: insertMonths(24)">24 months</a>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputInterest" class="col-sm-2 col-form-label">Interest (%)</label>
+                    <div class="col-sm-5">
+                      <input type="number" class="form-control" id="inputInterest" placeholder="ex: 0" value="0" onkeyup="javascript: calculateInterest()">
+                    </div>
+                    <div class="col-sm-5 buttons">
+                      <a href="#" class="btn btn-sm btn-outline-info" onclick="javascript: insertInterest(0)">0 %</a>
+                      <a href="#" class="btn btn-sm btn-outline-info" onclick="javascript: insertInterest(0.89)">0.89 %</a>
+                      <a href="#" class="btn btn-sm btn-outline-info" onclick="javascript: insertInterest(1.24)">1.24 %</a>
+                    </div>
+                  </div>
+                </form>
+                <hr>
+                <div class="interest-per-month-results">
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Monthly amount</label>
+                    <div class="col-sm-4">
+                      <input type="text" readonly class="form-control monthly-amount">
+                    </div>
+                    <label class="col-sm-2 col-form-label">Interest per month</label>
+                    <div class="col-sm-4">
+                      <input type="text" readonly class="form-control monthly-interest">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Total amount</label>
+                    <div class="col-sm-4">
+                      <input type="text" readonly class="form-control total-amount">
+                    </div>
+                    <label class="col-sm-2 col-form-label">Total interest</label>
+                    <div class="col-sm-4">
+                      <input type="text" readonly class="form-control total-interest">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Amount different</label>
+                    <div class="col-sm-4">
+                      <input type="text" readonly class="form-control amount-different">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Percentage of amount
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Percentage of amount
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
+                aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    function isNaN(x) {
+      x = Number(x)
+      return x != x
+    }
+
+    function parseNumberFormat (string) {
+      if (isNaN(string)) {
+        return 0
+      }
+      return string.toLocaleString('en')
+    }
+
+    const inputAmount = $('#inputAmount')
+    const inputMonth = $('#inputMonth')
+    const inputInterest = $('#inputInterest')
+    const divInterestPerMonthResults = $('.interest-per-month-results')
+
+    function insertMonths (months) {
+      inputMonth.val(months)
+
+      calculateInterest()
+    }
+
+    function insertInterest (interest) {
+      inputInterest.val(interest)
+
+      calculateInterest()
+    }
+
+    function calculateInterest () {
+      const amount = parseInt(inputAmount.val(), 10)
+      const month = parseInt(inputMonth.val(), 10)
+      const interest = parseFloat(inputInterest.val())
+
+      const amountPerMonth = (amount / month)
+      const interestPerMonth = ((amount * interest) / 100)
+      const amountMonthly = (amountPerMonth + interestPerMonth)
+      const totalInterest = (interestPerMonth * month)
+      const totalAmount = (amountMonthly * month)
+      const amountDifferent = (totalAmount - amount)
+
+      $('.monthly-interest', divInterestPerMonthResults).val(parseNumberFormat(interestPerMonth))
+      $('.monthly-amount', divInterestPerMonthResults).val(parseNumberFormat(amountMonthly))
+      $('.total-interest', divInterestPerMonthResults).val(parseNumberFormat(totalInterest))
+      $('.total-amount', divInterestPerMonthResults).val(parseNumberFormat(totalAmount))
+      $('.amount-different', divInterestPerMonthResults).val(parseNumberFormat(amountDifferent))
+    }
+  </script>
+</body>
+</html>
